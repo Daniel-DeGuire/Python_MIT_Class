@@ -1,0 +1,86 @@
+-----> Building on the Heroku-20 stack
+-----> Using buildpack: heroku/nodejs
+-----> Node.js app detected
+       
+-----> Creating runtime environment
+       
+       NPM_CONFIG_LOGLEVEL=error
+       NODE_VERBOSE=false
+       NODE_ENV=production
+       NODE_MODULES_CACHE=true
+       
+-----> Installing binaries
+       engines.node (package.json):  unspecified
+       engines.npm (package.json):   unspecified (use default)
+       
+       Resolving node version 14.x...
+       Downloading and installing node 14.18.1...
+       Using default npm version: 6.14.15
+       
+-----> Restoring cache
+       - node_modules
+       
+-----> Installing dependencies
+       Installing node modules
+       
+       > deasync@0.1.23 install /tmp/build_87e29bce/node_modules/deasync
+       > node ./build.js
+       
+       `linux-x64-node-14` exists; testing
+       Binary is fine; exiting
+       
+       > core-js@2.6.12 postinstall /tmp/build_87e29bce/node_modules/core-js
+       > node -e "try{require('./postinstall')}catch(e){}"
+       
+       
+       > fsevents@1.2.13 install /tmp/build_87e29bce/node_modules/fsevents
+       > node install.js
+       
+       
+       Skipping 'fsevents' build as platform linux is not supported
+       
+       > parcel-bundler@1.12.5 postinstall /tmp/build_87e29bce/node_modules/parcel-bundler
+       > node -e "console.log('\u001b[35m\u001b[1mLove Parcel? You can now donate to our open collective:\u001b[22m\u001b[39m\n > \u001b[34mhttps://opencollective.com/parcel/donate\u001b[0m')"
+       
+       Love Parcel? You can now donate to our open collective:
+        > https://opencollective.com/parcel/donate
+       
+       > node@15.8.0 preinstall /tmp/build_87e29bce/node_modules/node
+       > node installArchSpecificPackage
+       
+       + node-linux-x64@15.8.0
+       added 1 package in 3.974s
+       found 0 vulnerabilities
+       
+       
+       > nodemon@2.0.13 postinstall /tmp/build_87e29bce/node_modules/nodemon
+       > node bin/postinstall || exit 0
+       
+       Love nodemon? You can now support the project via the open collective:
+        > https://opencollective.com/nodemon/donate
+       
+       added 1647 packages in 44.002s
+       
+-----> Build
+       
+-----> Caching build
+       - node_modules
+       
+-----> Pruning devDependencies
+       removed 520 packages and audited 1127 packages in 14.789s
+       
+       54 packages are looking for funding
+         run `npm fund` for details
+       
+       found 28 vulnerabilities (19 moderate, 9 high)
+         run `npm audit fix` to fix them, or `npm audit` for details
+       
+-----> Build succeeded!
+-----> Discovering process types
+       Procfile declares types     -> (none)
+       Default types for buildpack -> web
+-----> Compressing...
+       Done: 93.4M
+-----> Launching...
+       Released v5
+       https://caninegoldenyears.herokuapp.com/ deployed to Heroku
