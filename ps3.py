@@ -10,7 +10,7 @@
 import math
 import random
 import string
-1
+
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 HAND_SIZE = 7
@@ -91,20 +91,13 @@ def get_word_score(word, n):
     n: int >= 0
     returns: int >= 0
     """
-    if len(word) == 0:
-        return 0  # Handle empty string
     
-    word_length = len(word)
-    first_component = sum(SCRABBLE_LETTER_VALUES.get(letter.lower(), 0) for letter in word)
-    second_component = max(7 * word_length - 3 * max(n - word_length, 0), 1)
-    
-    return first_component * second_component
+    pass  # TO DO... Remove this line when you implement this function
 
 #
 # Make sure you understand how this function works and what it does!
 #
 def display_hand(hand):
-    
     """
     Displays the letters currently in the hand.
 
@@ -143,14 +136,11 @@ def deal_hand(n):
     hand={}
     num_vowels = int(math.ceil(n / 3))
 
-     # Add one wildcard to the hand
-    hand[WILDCARD] = 1
-    
     for i in range(num_vowels):
         x = random.choice(VOWELS)
         hand[x] = hand.get(x, 0) + 1
     
-    for i in range(num_vowels + 1, n):    
+    for i in range(num_vowels, n):    
         x = random.choice(CONSONANTS)
         hand[x] = hand.get(x, 0) + 1
     
@@ -177,91 +167,25 @@ def update_hand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # Make a copy of the hand so we don't change the original
-    new_hand = hand.copy()
-    
-    # Loop through each letter in the word (lowercase to match the hand)
-    for letter in word.lower():
-        # Check if the letter is in the hand and has more than 0
-        if letter in new_hand:
-            if new_hand[letter] > 0:
-                new_hand[letter] -= 1
-    
-    # Clean up the hand by removing letters that ran out
-    for key in list(new_hand.keys()):
-        if new_hand[key] == 0:
-            del new_hand[key]
-    
-    return new_hand
+
+    pass  # TO DO... Remove this line when you implement this function
+
 #
 # Problem #3: Test word validity
 #
-#Function: is_valid_word(word, hand, word_list)
-
 def is_valid_word(word, hand, word_list):
     """
-    Returns True if the word is in the word_list and can be formed using the given hand.
-    Supports wildcards by allowing '*' to represent any vowel.
+    Returns True if word is in the word_list and is entirely
+    composed of letters in the hand. Otherwise, returns False.
+    Does not mutate hand or word_list.
+   
+    word: string
+    hand: dictionary (string -> int)
+    word_list: list of lowercase strings
+    returns: boolean
     """
-    """
-    Returns True if the word is in the word_list and can be formed using the given hand.
-    Supports wildcards by allowing '*' to represent any vowel.
-    """
-    word = word.lower()  # Ensure case-insensitivity
-    
-    # If no wildcard in the word, proceed with normal validation
-    if '*' not in word:
-        return word in word_list and can_be_formed(word, hand)
-    
-    # Generate all possible words by replacing '*' with each vowel
-    possible_words = [word.replace('*', v) for v in 'aeiou']
-    
-    # Check if any of the generated words are valid and can be formed from the hand
-    return any(w in word_list and can_be_formed_with_wildcard(w, hand) for w in possible_words)
 
-
-def can_be_formed(word, hand):
-    """
-    Check if the word can be formed from the given hand, without considering wildcards.
-    """
-    hand_copy = hand.copy()  # Work with a copy of the hand to avoid modifying the original
-    
-    for letter in word:
-        # If the letter is available in the hand, reduce its count
-        if hand_copy.get(letter, 0) > 0:
-            hand_copy[letter] -= 1
-        else:
-            return False  # Not enough letters in the hand to form the word
-    
-    return True
-
-
-def can_be_formed_with_wildcard(word, hand):
-    """
-    Check if the word can be formed from the given hand, allowing '*' to substitute any vowel.
-    """
-    hand_copy = hand.copy()  # Work with a copy of the hand
-    
-    for letter in word:
-        # If the letter is in the hand, reduce its count
-        if hand_copy.get(letter, 0) > 0:
-            hand_copy[letter] -= 1
-        # If the letter is a vowel and the hand contains a wildcard, use the wildcard
-        elif '*' in hand_copy and letter in 'aeiou':  # '*' can only replace vowels
-            hand_copy['*'] -= 1  # Use wildcard to substitute for a vowel
-        else:
-            return False  # The letter is either not in the hand, or it cannot be replaced
-
-    # Ensure the wildcard usage does not go negative (only one wildcard can be used)
-    if hand_copy.get('*', 0) < 0:
-        return False  # More than one wildcard usage, which is not allowed
-
-    return True
-
-
-
-
-
+    pass  # TO DO... Remove this line when you implement this function
 
 #
 # Problem #5: Playing a hand
@@ -273,7 +197,8 @@ def calculate_handlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    return sum(hand.values())
+    
+    pass  # TO DO... Remove this line when you implement this function
 
 def play_hand(hand, word_list):
 
@@ -305,31 +230,39 @@ def play_hand(hand, word_list):
       returns: the total score for the hand
       
     """
-    total_score = 0 #Initialize total score
     
-    while sum(hand.values()) > 0:
-        print("Current hand:", hand)
-        word = input("Enter a word (or '!!' to stop): ").lower()
+    # BEGIN PSEUDOCODE <-- Remove this comment when you implement this function
+    # Keep track of the total score
     
-        if word == '!!':  # If the player chooses to quit
-            break
+    # As long as there are still letters left in the hand:
     
-    # check if a word is valid
-    if is_valid_word(word, hand, word_list):
-        word_score = len(word)
-        total_score += word_score 
-        print(f"word '{word} is valid! You eaarend {word_score} points.")
+        # Display the hand
         
-            # Update the hand based on the word formed
-    else:
-        print(f"Word '{word}' is no valid or cannot be formed from the hand.")
+        # Ask user for input
         
-    print("Game over!")
-    print(f"Total score: {total_score}")
-    return total_score
+        # If the input is two exclamation points:
+        
+            # End the game (break out of the loop)
 
+            
+        # Otherwise (the input is not two exclamation points):
 
-    
+            # If the word is valid:
+
+                # Tell the user how many points the word earned,
+                # and the updated total score
+
+            # Otherwise (the word is not valid):
+                # Reject invalid word (print a message)
+                
+            # update the user's hand by removing the letters of their inputted word
+            
+
+    # Game is over (user entered '!!' or ran out of letters),
+    # so tell user the total score
+
+    # Return the total score as result of function
+
 
 
 #
@@ -398,7 +331,8 @@ def play_game(word_list):
     word_list: list of lowercase strings
     """
     
- 
+    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
+    
 
 
 #
